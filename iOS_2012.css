@@ -46,6 +46,7 @@
   height: 12px;
 }
 
+
 /*
  * Outgoing texts
  */
@@ -53,6 +54,7 @@
   float: right;
   background: linear-gradient(to top, #b6e74d 0%, #8fd13e 25.6%, #8acf43 79.9%, #4ab947 100%) #8fd13e;
 }
+
 
 /*
  * Incoming texts
@@ -111,11 +113,13 @@
   font-size: 12px;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
 }
+
 /* Message button */
 .phone .contact:before {
   content: "Messages";
   left: 5px;
 }
+
 /* Edit button */
 .phone .contact:after {
   content: "Edit";
