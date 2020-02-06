@@ -4,7 +4,6 @@
   max-width: 320px;
   margin: auto;
   font-family: "Avenir Next", Avenir, Arial, sans-serif;
-  padding: 10px;
 }
 
 /* Matching font style of both names and dates */
@@ -61,7 +60,7 @@
 
 
 /*************************************************************************************
-*                   3x emojis
+*                   Big emojis
 *************************************************************************************/
 .snapchat .emoji {
   font-size: 3em;
