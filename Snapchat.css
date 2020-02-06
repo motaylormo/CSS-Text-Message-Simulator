@@ -1,12 +1,9 @@
-/*
- * Wrapper
- */
+/* Wrapper */
 .snapchat {
   width: 100%;
   max-width: 320px;
   margin: auto;
   font-family: "Avenir Next", Avenir, Arial, sans-serif;
-  background: white;
   padding: 10px;
 }
 
@@ -26,11 +23,13 @@
   color: #d9d9d9;
 }
 
+/*************************************************************************************
+*                   Texts
+*************************************************************************************/
 /* Names */
 .snapchat dt {
   margin-top: 10px;
 }
-
 /* Texts */
 .snapchat dd {
   margin: 0;
@@ -42,7 +41,7 @@
 
 /*
  * Outgoing/red
- */
+*/
 .snapchat .out dt {
   color: #e92754;
 }
@@ -61,17 +60,17 @@
 }
 
 
-/*
- * 3x emoji
- */
+/*************************************************************************************
+*                   3x emojis
+*************************************************************************************/
 .snapchat .emoji {
   font-size: 3em;
 }
 
 
-/*
- * Icons
- */
+/*************************************************************************************
+*                   Icons
+*************************************************************************************/
 .snapchat .icon {
   display: block;
   width: 100%;
@@ -80,11 +79,7 @@
   border: 1px solid #d9d9d9;
   padding: 0.5em 0;
 }
-/* Hidden backup */
-.snapchat .icon i {
-  display: none;
-}
-
+/* image */
 .snapchat .icon:before {
   float: left;
   display: inline-block;
@@ -94,7 +89,7 @@
   height: 1em;
   content: "";
 }
-
+/* message */
 .snapchat .icon:after {
   float: left;
   display: inline-block;
