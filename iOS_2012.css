@@ -14,70 +14,82 @@
   display: none;
 }
 
+
 /*************************************************************************************
 *                   Texts
 *************************************************************************************/
 .phone .in dd,
 .phone .out dd {
+  position: relative;
+  clear: both;
+  z-index: 1; /* so shine goes under bubble's text */
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.49);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(0,0,0, 0.5);
+  box-shadow: 0 1px 2px rgba(0,0,0, 0.28);
   padding: 6px 10px;
   margin: 5px 10px;
   max-width: 180px;
   color: #000000;
   line-height: 1.2em;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
-  position: relative;
-  clear: both;
+  text-shadow: 0 1px 1px rgba(255,255,255, 0.6);
 }
-/* Shine on top of text bubble */
+/* Shine at the top of texts */
 .phone .in dd:before,
 .phone .out dd:before {
   content: "";
+  z-index: -1; /* so shine goes under bubble's text */
   display: block;
   position: absolute;
-  background: linear-gradient(rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.25));
+  background: linear-gradient(rgba(255,255,255, 0.76), rgba(255,255,255, 0.25));
   border-radius: 12px;
-  opacity: 1;
   top: 0;
   left: 10px;
   right: 10px;
   height: 12px;
 }
 
-
-/*
- * Outgoing texts
- */
+/* outgoing texts */
 .phone .out dd {
   float: right;
-  background: linear-gradient(to top, #b6e74d 0%, #8fd13e 25.6%, #8acf43 79.9%, #4ab947 100%) #8fd13e;
+  background: linear-gradient(to top, #d3f8ff 0%, transparent 0.75em) #99c9ff;
+  filter: hue-rotate(-10deg);
 }
 
+/* Green outgoing texts */
+.phone .out.gr dd {
+  background: linear-gradient(to top, #e7f585 0%, transparent 0.75em) #8fd13e;
+}
 
-/*
- * Incoming texts
- */
+/* Incoming texts */
 .phone .in dd {
   float: left;
-  background-image: linear-gradient(to top, #e1e1e1 0%, #e0e0e0 100%);
+  background: linear-gradient(to top, #f5f5f5 0%, transparent 0.75em) #dddddd;
 }
 
 
 /*************************************************************************************
-*                   Time
+*                   Time (+ grouptext)
 *************************************************************************************/
-.phone .time {
-  margin: 0 auto;
-  margin-top: 5px;
-  padding-bottom: 5px;
-  float: left;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
+.phone .time,
+.phone.grouptext .in dt {
+  clear: both;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 0.75em;
   color: #7c899a;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.96);
+  margin: 0;
+}
+
+.phone .time {
+  text-align: center;
+  padding: 5px 0;
+}
+
+.phone.grouptext .in dt {
+  padding-left: 15px;
+  padding-top: 10px;
+  display: table !important;
 }
 
 
@@ -86,7 +98,7 @@
 *************************************************************************************/
 .phone .contact {
   position: relative;
-  background: linear-gradient(to top, #6D83A1 0%, #7e93af 47.6%, #8c9eb5 50.3%, #b4bfce 100%);
+  background: linear-gradient(to bottom, #b2bdcc, #8a9cb4 50%, #7c91ad 50%, #6e85a3);
   border-bottom: 1px solid #000000;
   margin: 0;
   padding: 12px;
@@ -98,29 +110,25 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.53);
 }
 
-/* Buttons */
+/* buttons */
 .phone .contact:before,
 .phone .contact:after {
   position: absolute;
   top: 5px;
   bottom: 5px;
   min-width: 40px;
-  border-radius: 6px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.13) 46.9%, rgba(255, 255, 255, 0.22) 51.9%, rgba(255, 255, 255, 0.34) 100%) #486a98;
-  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.28), 0 1px 0 rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.39);
+  border-radius: 6px; 
+  background: linear-gradient(to bottom, #7f99b9, #5c7ba5 50%, #486a9b 51%, #496c9b);
+  box-shadow: inset 0 1px 0 rgba(0,0,0, 0.28), 0 1px 0 rgba(255,255,255, 0.12);
+  border: 1px solid rgba(0,0,0, 0.39);
   padding: 10px;
   font-size: 12px;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0,0,0, 0.5);
 }
-
-/* Message button */
 .phone .contact:before {
   content: "Messages";
   left: 5px;
 }
-
-/* Edit button */
 .phone .contact:after {
   content: "Edit";
   right: 5px;
