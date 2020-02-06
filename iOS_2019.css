@@ -7,7 +7,6 @@
   margin: auto;
 }
 
-
 /* characters's names hidden */
 .imessenge dt {
   display: none;
@@ -41,10 +40,7 @@
   height: 20px;
 }
 
-
-/*
- * Outgoing texts
- */
+/* Outgoing texts */
 .imessenge .out dd {
   float: right;
   background: #007aff;
@@ -64,9 +60,7 @@
   border-color: #34c759;
 }
 
-/*
- * Incoming texts
- */
+/* Incoming texts */
 .imessenge .in dd {
   float: left;
   background: #e5e5ea;
@@ -79,9 +73,10 @@
 }
 
 
-/*
- * No-bubble texts
- */
+/*************************************************************************************
+*                   No-bubble texts (pictures, rich links, and emojis)
+*************************************************************************************/
+/* no bubble */
 .imessenge .pic,
 .imessenge .emoji {
   background: none !important;
@@ -93,6 +88,7 @@
   content: none !important;
 }
 
+/* pictures (and iframes for youtube links) */
 .imessenge .pic img,
 .imessenge .pic iframe {
   border-radius: 20px;
@@ -106,22 +102,13 @@
 }
 
 
-/*
- * Links
- */
-.imessenge a {
-  word-break: break-all; /* linebreak when space runs out */
-  color: inherit; /* color match */
-}
-
-
 /*************************************************************************************
-*                   Time + groupchat
+*                   Time (+ grouptext)
 *************************************************************************************/
 /* Shared font type */
 .imessenge .time,
-.imessenge.grouptext .in dt,
-.imessenge .read {
+.imessenge .read,
+.imessenge.grouptext .in dt {
   clear: both;
   font-family: inherit;
   font-weight: normal;
@@ -135,12 +122,6 @@
   padding: 10px 0;
 }
 
-/* Show the names with incoming texts for grouptext mode */
-.imessenge.grouptext .in dt {
-  padding-left: 10px;
-  display: table !important;
-}
-
 /* read receipt */
 .imessenge .read {
   float: right;
@@ -150,6 +131,11 @@
   margin-top: -8px;
 }
 
+/* Group-text mode: showing names */
+.imessenge.grouptext .in dt {
+  padding-left: 10px;
+  display: table !important;
+}
 
 /*************************************************************************************
 *                   Contact header
