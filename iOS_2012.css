@@ -1,6 +1,4 @@
-/*
- * wrapper
- */
+/* wrapper */
 .phone {
   width: 100%;
   max-width: 320px;
@@ -16,9 +14,9 @@
   display: none;
 }
 
-/*
- * All texts
- */
+/*************************************************************************************
+*                   Texts
+*************************************************************************************/
 .phone .in dd,
 .phone .out dd {
   border-radius: 12px;
@@ -64,9 +62,10 @@
   background-image: linear-gradient(to top, #e1e1e1 0%, #e0e0e0 100%);
 }
 
-/*
- * Time label
- */
+
+/*************************************************************************************
+*                   Time
+*************************************************************************************/
 .phone .time {
   margin: 0 auto;
   margin-top: 5px;
@@ -80,9 +79,9 @@
 }
 
 
-/*
- * Contact header
- */
+/*************************************************************************************
+*                   Contact header
+*************************************************************************************/
 .phone .contact {
   position: relative;
   background: linear-gradient(to top, #6D83A1 0%, #7e93af 47.6%, #8c9eb5 50.3%, #b4bfce 100%);
@@ -96,7 +95,8 @@
   font-weight: bold;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.53);
 }
-/* Before and after buttons */
+
+/* Buttons */
 .phone .contact:before,
 .phone .contact:after {
   position: absolute;
