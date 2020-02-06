@@ -1,6 +1,4 @@
-/*
- * wrapper
- */
+/* wrapper */
 .imessenge {
   width: 100%;
   max-width: 320px;
@@ -16,9 +14,9 @@
 }
 
 
-/*
- * All texts
- */
+/*************************************************************************************
+*                   Texts
+*************************************************************************************/
 .imessenge .out dd,
 .imessenge .in dd {
   margin: 0;
@@ -117,9 +115,10 @@
 }
 
 
-/*
- * Time receipts
- */
+/*************************************************************************************
+*                   Time + groupchat
+*************************************************************************************/
+/* Shared font type */
 .imessenge .time,
 .imessenge.grouptext .in dt,
 .imessenge .read {
@@ -152,9 +151,9 @@
 }
 
 
-/*
- * Contact header
- */
+/*************************************************************************************
+*                   Contact header
+*************************************************************************************/
 .imessenge .contact {
   position: relative;
   background: #f2f2f7;
@@ -167,6 +166,7 @@
   font-weight: bold;
   white-space: nowrap;
 }
+
 /* back arrow */
 .imessenge .contact:before {
   content: "";
