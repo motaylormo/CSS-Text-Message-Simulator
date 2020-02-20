@@ -25,11 +25,3 @@ So with any of them, the basic structure is something like this:
 
 </dl>
 ```
-
-## Features
-|                | Contact header     | Group chat         | Sending pictures           | Big emojis |
-| -------------: | :----------------- | :----------------- | :------------------------- | :--------- |
-| iOS circa 2019 | :white_check_mark: | :white_check_mark: | :white_check_mark:         | :white_check_mark:
-| iOS circa 2012 | :white_check_mark: | :white_check_mark: | :white_check_mark:         | :no_entry_sign: (old iOS did not have big emojis yet)
-| WhatsApp       | :white_check_mark: | :no_entry_sign:    | :white_check_mark:         | :white_check_mark:
-| Snapchat       | :no_entry_sign:    | :no_entry_sign:    | :white_check_mark: (icons) | :white_check_mark:
