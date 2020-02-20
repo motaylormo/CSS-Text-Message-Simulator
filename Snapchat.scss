@@ -1,0 +1,186 @@
+//	https://docs.snapchat.com/docs/design-guidelines/
+$red: #e92754;
+$blue: #3cb2e2;
+$purple: #9b55a0;
+$teal: #03a588;
+$border: #d9d9d9;
+
+.snapchat {
+	width: 100%;
+	max-width: 320px;
+	font-family: "Avenir Next", Avenir, sans-serif;
+	margin: auto;
+	border: 1px solid $border;
+
+
+	//headers tags don't get a different font
+	* {
+		font-family: inherit;
+	}
+
+	//matching font style of both names and dates
+	dt,
+	.day {
+		text-transform: uppercase;
+		font-weight: normal;
+		letter-spacing: 1px;
+		font-size: 0.75em;
+	}
+
+	.day {
+		text-align: center;
+		color: $border;
+	}
+
+//*************************************************
+//	basic messages
+//*************************************************
+	.in,
+	.out {
+	margin: 10px;
+		
+		dd {
+			margin: 0;
+			margin-left: 2px;
+			padding: 4px 10px;
+			border-left: solid 2px;
+
+			.emoji {
+				font-size: 3em;
+			}
+		}
+	}
+
+	//Outgoing/red
+	.out {
+		dt { color: $red; }
+		dd { border-color: $red; }
+	}
+
+	//Incoming/blue
+	.in {
+		dt { color: $blue; }
+		dd { border-color: $blue; }
+	}
+
+//*************************************************
+//	icons
+//	https://support.snapchat.com/en-US/a/friends-screen-icon-guide
+//*************************************************
+	.icon {
+
+		&::after {
+			display: table;
+			padding: 1em;
+			box-sizing: border-box;
+			width: 100%;
+			border-radius: 4px;
+			border: 1px solid $border;
+
+			//image part
+			background-repeat: no-repeat;
+			background-size: auto 1em;
+			background-position: 1em;
+
+			//text part
+			padding-left: 3em;
+			font-weight: bold;
+		}
+
+		&.opened::after {
+				content: "Opened";
+			}
+
+		&.unopened::after {
+				content: "Delivered";
+			}
+
+		&.screenshot {
+			&::after {
+				content: "Screenshot!";
+				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.7.png");
+			}
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.3.png"); }
+			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.9.png"); }
+		}
+
+		&.replay {
+			&::after {
+				content: "Replay!";
+				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.8.png");
+			}
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.4.png"); }
+		}
+	}
+
+	//incoming snap icons (aka the square ones)
+	.in .icon {
+		&.opened {
+			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.5.png"); }
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.2.png"); }
+			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support16.1.png"); }
+		}
+
+		&.unopened {
+			&::after {
+				content: "Press and hold to view";
+				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.4.png");
+			}
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.1.png"); }
+			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support16.2.png"); }
+		}
+	}
+
+	//outgoing snap icons (aka the arrow shaped ones)
+	.out .icon {
+		&.opened {
+			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.3.png"); }
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.0.png"); }
+			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.6.png"); }
+		}
+
+		&.unopened {
+			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.6.png"); }
+			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.9.png"); }
+			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.5.png"); }
+		}
+	}
+
+//*************************************************
+//	contact header
+//*************************************************
+	.contact {
+		position: relative;
+		background: linear-gradient(to right, #2ec9ff, #00a0f0), #3cb2e2;
+		margin: 0;
+		color: white;
+		font-size: 1.2em;
+		line-height: 2.5em;
+		font-weight: normal;
+		
+		//text overflow
+		text-align: center;
+		padding: 0 2.5em;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		&::before,
+		&::after {
+			position: absolute;
+			font-family: FontAwesome;
+		}
+
+		//menu (aka 3 lines)
+		&::before {
+			content: "\f0c9";//https://fontawesome.com/icons/bars?style=solid
+			left: 0.75em;
+		}
+
+		//arrow
+		&::after {
+			content: "\f054";//https://fontawesome.com/icons/chevron-right?style=solid
+			right: 0.75em;
+		}
+	}
+}
