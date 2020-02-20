@@ -187,7 +187,6 @@ $tailSize: 0.625em;
 						transform: rotate(-45deg);
 					}
 				}
-        
 			}
 		}
 	}
@@ -306,8 +305,11 @@ $tailSize: 0.625em;
 		&::before {
 			content: "";
 			position: absolute;
-			top: 1em;
 			left: 1em;
+			//vertically center
+			top: 0;
+			bottom: 0;
+			margin: auto;
 			width: 0.75em;
 			height: 0.75em;
 			border-left: 2.5px solid $systemBlue;
