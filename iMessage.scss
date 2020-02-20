@@ -1,0 +1,418 @@
+$systemBlue: rgb(0,122,255);
+$systemGreen: rgb(52,199,89);
+$systemGray5: rgb(229,229,234);
+$systemGray: rgb(142,142,147);
+$systemGray6: rgb(242,242,247);
+$separator: rgba(60,60,67, 0.29);
+$tailSize: 0.625em;
+
+//*************************************************
+//	wrapper
+//*************************************************
+.imessage {
+	width: 100%;
+	max-width: 320px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	display: table;
+	margin: auto;
+	border: 1px solid $separator;
+
+	//headers tags don't get a different font
+	* {
+		font-family: inherit;
+	}
+
+//*************************************************
+//	basic text shared stuff
+//*************************************************
+	.in,
+	.out {
+		//space for the tails
+		margin-left: $tailSize;
+		margin-right: $tailSize;
+
+		dd {
+			margin: 1px 0;
+			border-radius: 1em;
+			padding: 0.5em 1em;
+			max-width: 70%;
+			clear: both;
+			position: relative;
+			z-index: 1;
+
+			//tail
+			&:last-of-type::after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				width: $tailSize;
+				height: 1em;//should always be a good height for the bubble
+				z-index: -1;
+			}
+
+			//the last part in a text series has more space after it
+			//(not necessarily a text, could be a read receipt)
+			&:last-child {
+				margin-bottom: 1em;
+			}
+		}
+	}
+
+//*************************************************
+//	incoming and outgoing texts
+//*************************************************
+//Outgoing texts
+	.out dd {
+		float: right;
+		background: $systemBlue;
+		color: white;
+
+		&:last-of-type::after {
+			right: -$tailSize;
+			border-left: $tailSize solid $systemBlue;
+			border-bottom-left-radius: ($tailSize * 2) $tailSize;
+		}
+	}
+
+//Incoming texts
+	.in dd {
+		float: left;
+		background: $systemGray5;
+
+		&:last-of-type::after {
+			left: -$tailSize;
+			border-right: $tailSize solid $systemGray5;
+			border-bottom-right-radius: ($tailSize * 2) $tailSize;
+		}
+	}
+
+//*************************************************
+//	manage different kinds of text content
+//*************************************************
+	.in dd,
+	.out dd {
+
+		//no bubble
+		&.pic,
+		&.emoji {
+			background: none;
+			padding: 0;
+			&::after {
+				display: none;
+			}
+		}
+		//clip corners
+		&.pic {
+			overflow: hidden;
+		}
+		//don't clip corners + 3x emojis
+		&.emoji {
+			border-radius: 0;
+			font-size: 3em;
+		}
+
+		img {
+			max-width: 100%;
+			display: block;//otherwise there's extra space after
+		}
+
+		//basic links
+		a {
+			word-break: break-all;
+			color: inherit;
+		}
+
+	//*************************************************
+	//	rich links
+	//*************************************************
+		&.richlink {
+			max-width: 224px;
+			padding: 0;
+
+			//the colors of an incoming text, even if outgoing
+			color: black;
+			background: $systemGray5 !important;
+			&::after {
+				border-color: $systemGray5 !important;
+			}
+
+			a {
+				display: block;
+				word-break: normal;
+				text-decoration: none;
+				font-size: 0.75em;
+			//curve corners
+				border-radius: inherit;
+				overflow: hidden;
+
+				//youtube gives videos at 560 x 315 (16 : 9)
+				iframe {
+					display: block;
+					border: none;
+					width: 224px;// 40% youtube's scale
+					height: 126px;
+					max-width: 100%;
+					max-height: 100%;
+				}
+
+				//link blurb
+				p {
+					margin: 1em 1.5em;
+					display: block;
+					position: relative;
+					color: $systemGray;
+					b {
+						display: inline-block;
+						margin-bottom: 0.5em;
+						color: black;
+					}
+				}
+
+				//arrow if it's a video
+				iframe + p {
+					margin-right: 2.5em;
+					&::after {
+						content: "";
+						position: absolute;
+						right: -1em;
+						//vertically center
+						top: 0;
+						bottom: 0;
+						margin: auto;
+						
+						width: 0.75em;
+						height: 0.75em;
+						border-right: 1.5px solid $systemGray;
+						border-bottom: 1.5px solid $systemGray;
+						transform: rotate(-45deg);
+					}
+				}
+        
+			}
+		}
+	}
+
+//*************************************************
+//	typing dot-dot-dot
+//*************************************************
+	.in dd.typing {
+		//bubble tail
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			border-radius: 100%;
+			background: $systemGray5;
+			border: none;
+		}
+		&::after {
+			bottom: 0;
+			left: -($tailSize / 4);
+			width: $tailSize;
+			height: $tailSize;
+		}
+		&::before {
+			bottom: -($tailSize / 3);
+			left: -($tailSize / 2);
+			width: $tailSize / 2;
+			height: $tailSize / 2;
+		}
+
+		//the 3 dots
+		hr {
+			height: $tailSize;
+			width: $tailSize;
+			border-radius: 100%;
+			background: $systemGray;
+			border: none;
+			display: inline-block;
+			margin: 0.125em;
+
+			//animation
+			opacity: 0.4;
+			animation: dotspulse 1.333s infinite ease-in-out;
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					animation-delay: $i * (1s / 3);
+				}
+			}
+			@keyframes dotspulse {
+				50% {
+					opacity: 1;
+					transform: scale(1.05);
+				}
+			}
+		}
+
+		//whole bubble pulses a little
+		animation: bubblepulse 3s infinite ease-in-out;
+
+		@keyframes bubblepulse {
+			50% { transform: scale(1.05); }
+		}
+	}
+
+//*************************************************
+//	little grey text stuff
+//	(aka time + read receipts + grouptext-mode names)
+//*************************************************
+	.time,
+	&.grouptext .in[name]::before,
+	.read {
+		clear: both;
+		font-weight: normal;
+		color: $systemGray;
+		font-size: 0.75em;
+	}
+
+	//time label
+	.time {
+		display: block;
+		text-align: center;
+		margin: 0;
+		padding: 1em;
+	}
+
+	//read receipt
+	.read {
+		float: right;
+		display: table;
+		padding: 0;
+		margin: 0;
+	}
+
+	//Show the names with incoming texts for grouptext mode
+	&.grouptext .in[name]::before {
+		content: attr(name);
+		padding-left: 1em;
+		display: table;
+	}
+
+//*************************************************
+//	contact header
+//*************************************************
+	.contact {
+		position: relative;
+		background: $systemGray6;
+		border-bottom: 1px solid $separator;
+		margin: 0;
+		text-align: center;
+		line-height: 3em;
+		font-size: 1.2em;
+		font-weight: bold;
+		white-space: nowrap;
+
+		//back arrow
+		&::before {
+			content: "";
+			position: absolute;
+			top: 1em;
+			left: 1em;
+			width: 0.75em;
+			height: 0.75em;
+			border-left: 2.5px solid $systemBlue;
+			border-bottom: 2.5px solid $systemBlue;
+			transform: rotate(45deg);
+		}
+	}
+
+//*************************************************
+//	type bar footer
+//*************************************************
+	.footer {
+		clear: both;
+		position: relative;
+		margin: 0.25em;
+
+		//camera icon
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			font-family: FontAwesome;
+			content: "\f030";//https://fontawesome.com/icons/camera?style=solid
+			color: $systemGray;
+			font-size: 1.5em;
+			line-height: 1.375em;
+			width: 2em;
+			text-align: center;
+		}
+
+		//the bit with a border where you type in the text
+		.typebar {
+			position: relative;
+			display: block;
+			border: 1px solid $separator;
+			box-sizing: border-box;
+			border-radius: 1em;
+			margin-left: 3em;//space for camera icon
+			padding-right: 2.5em;//space for send button
+			padding: 0.25em 1em;
+			line-height: 1.5em;
+
+			//send button
+			&::before {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				margin: 0.25em;
+				height: 2em;
+				width: 2em;
+				text-align: center;//horizontal center
+				line-height: 2em;//vertical center
+				border-radius: 100%;
+				background: $systemBlue;
+				font-family: FontAwesome;
+				content: "\f062";//https://fontawesome.com/icons/arrow-up?style=solid 
+				color: white;
+				font-size: 0.75em;
+			}
+
+			//blinking blue caret
+			&::after {
+				content: "";
+				border-right: 2px solid $systemBlue;
+				animation: 1.5s caretblink infinite;
+			}
+			@keyframes caretblink {
+				60% { border-color: $systemBlue; }
+				90% { border-color: transparent; }
+			}
+
+			//if empty
+			&:empty::after {
+				color: $separator;
+				content: "iMessage";
+				//caret comes before, not after, the filler text
+				border: none;
+				border-left: 2px solid $systemBlue;
+			}
+		}
+	}
+
+//*************************************************
+//	SMS mode (aka green)
+//*************************************************
+	&.sms {
+		//text bubble
+		.out dd {
+			background: $systemGreen;
+			&:last-of-type::after {
+				border-color: $systemGreen;
+			}
+		}
+
+		//type bar
+		.typebar {
+			//send button
+			&::before {
+				background: $systemGreen;
+			}
+			&:empty::after {
+				content: "Text Message";
+			}
+		}
+	}
+
+}
