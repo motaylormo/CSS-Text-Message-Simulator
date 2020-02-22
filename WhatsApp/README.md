@@ -14,7 +14,7 @@ Icons from [Material Icons](https://material.io/resources/icons/?style=baseline)
 | `#6f4bf5` | ![#6f4bf5](https://placehold.it/15/6f4bf5?text=+)
 | `#ec68a1` | ![#ec68a1](https://placehold.it/15/ec68a1?text=+)
 
-# [Stickers)[https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty]
+# [Stickers](https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty)
 ```html
 		<dd class="cuppy smile"></dd>
 		<dd class="cuppy lol"></dd>
