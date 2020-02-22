@@ -2,6 +2,7 @@ CodePen: [here](https://codepen.io/motaylormo/pen/PoqzxNO)
 
 Icons from [Material Icons](https://material.io/resources/icons/?style=baseline)
 
+# Colors
 | hex       | swatch |
 | :-------- | :----- |
 | `#e54c51` | ![#e54c51](https://placehold.it/15/e54c51?text=+)
@@ -12,3 +13,17 @@ Icons from [Material Icons](https://material.io/resources/icons/?style=baseline)
 | `#367cdc` | ![#367cdc](https://placehold.it/15/367cdc?text=+)
 | `#6f4bf5` | ![#6f4bf5](https://placehold.it/15/6f4bf5?text=+)
 | `#ec68a1` | ![#ec68a1](https://placehold.it/15/ec68a1?text=+)
+
+# [Stickers)[https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty]
+```html
+		<dd class="cuppy smile"></dd>
+		<dd class="cuppy lol"></dd>
+    <dd class="cuppy rofl"></dd>
+    <dd class="cuppy sad"></dd>
+    <dd class="cuppy cry"></dd>
+    <dd class="cuppy love"></dd>
+    <dd class="cuppy hate"></dd>
+    <dd class="cuppy lovewithmug"></dd>
+    <dd class="cuppy lovewithcookie"></dd>
+    <dd class="cuppy hmm"></dd>
+```
