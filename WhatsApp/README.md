@@ -16,14 +16,14 @@ Icons from [Material Icons](https://material.io/resources/icons/?style=baseline)
 
 # [Stickers](https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty)
 ```html
-		<dd class="cuppy smile"></dd>
-		<dd class="cuppy lol"></dd>
-    <dd class="cuppy rofl"></dd>
-    <dd class="cuppy sad"></dd>
-    <dd class="cuppy cry"></dd>
-    <dd class="cuppy love"></dd>
-    <dd class="cuppy hate"></dd>
-    <dd class="cuppy lovewithmug"></dd>
-    <dd class="cuppy lovewithcookie"></dd>
-    <dd class="cuppy hmm"></dd>
+<dd class="cuppy smile"></dd>
+<dd class="cuppy lol"></dd>
+<dd class="cuppy rofl"></dd>
+<dd class="cuppy sad"></dd>
+<dd class="cuppy cry"></dd>
+<dd class="cuppy love"></dd>
+<dd class="cuppy hate"></dd>
+<dd class="cuppy lovewithmug"></dd>
+<dd class="cuppy lovewithcookie"></dd>
+<dd class="cuppy hmm"></dd>
 ```
