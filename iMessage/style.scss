@@ -126,50 +126,68 @@ $tailSize: 0.625em;
 	//	rich links
 	//*************************************************
 		&.richlink {
-			max-width: 224px;
 			padding: 0;
 
 			//the colors of an incoming text, even if outgoing
 			color: black;
-			background: $systemGray5 !important;
+			background: $systemGray5;
 			&::after {
-				border-color: $systemGray5 !important;
+				border-color: $systemGray5;
 			}
 
 			a {
-				display: block;
+				display: table;
+				font-size: 0.75em;
+
+				//strip other link stuff
 				word-break: normal;
 				text-decoration: none;
-				font-size: 0.75em;
-			//curve corners
-				border-radius: inherit;
+				border: none;
+
+				//curve corners
+				border-top-left-radius: inherit;
+				border-top-right-radius: inherit;
 				overflow: hidden;
 
-				//youtube gives videos at 560 x 315 (16 : 9)
-				iframe {
-					display: block;
+				iframe,
+				img {
+					display: table-row;
 					border: none;
-					width: 224px;// 40% youtube's scale
-					height: 126px;
 					max-width: 100%;
-					max-height: 100%;
 				}
 
-				//link blurb
-				p {
-					margin: 1em 1.5em;
-					display: block;
+				//default video aspect ratio 16:9
+				iframe {
+					width: 210px;
+					height: 118px;
+				}
+
+				// aspect ratio 4:3
+				iframe[class="SD" i] {
+					width: 210px;
+					height: 157px;
+				}
+
+				//tall narrow images can't be THAT big
+				img {
+					max-height: 250px;
+				}
+
+				figcaption {
+					display: table-caption;
+					caption-side: bottom;
 					position: relative;
+					margin: 1em 1.5em;
 					color: $systemGray;
 					b {
-						display: inline-block;
+						display: block;
 						margin-bottom: 0.5em;
 						color: black;
 					}
 				}
 
 				//arrow if it's a video
-				iframe + p {
+				iframe + figcaption {
 					margin-right: 2.5em;
 					&::after {
 						content: "";
