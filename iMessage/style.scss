@@ -4,7 +4,7 @@ $systemGray5: rgb(229,229,234);
 $systemGray: rgb(142,142,147);
 $systemGray6: rgb(242,242,247);
 $separator: rgba(60,60,67, 0.29);
-$tailSize: 0.625em;
+$tailSize: 0.625rem;
 
 //*************************************************
 //	wrapper
@@ -33,8 +33,8 @@ $tailSize: 0.625em;
 
 		dd {
 			margin: 1px 0;
-			border-radius: 1em;
-			padding: 0.5em 1em;
+			border-radius: 1rem;
+			padding: 0.5rem 1rem;
 			max-width: 70%;
 			clear: both;
 			position: relative;
@@ -46,14 +46,14 @@ $tailSize: 0.625em;
 				position: absolute;
 				bottom: 0;
 				width: $tailSize;
-				height: 1em;//should always be a good height for the bubble
+				height: 1rem;//should always be a good height for the bubble
 				z-index: -1;
 			}
 
 			//the last part in a text series has more space after it
 			//(not necessarily a text, could be a read receipt)
 			&:last-child {
-				margin-bottom: 1em;
+				margin-bottom: 1rem;
 			}
 		}
 	}
@@ -96,19 +96,21 @@ $tailSize: 0.625em;
 		&.pic,
 		&.emoji {
 			background: none;
-			padding: 0;
 			&::after {
 				display: none;
 			}
 		}
 		//clip corners
 		&.pic {
+			padding: 0;
 			overflow: hidden;
 		}
 		//don't clip corners + 3x emojis
 		&.emoji {
+      padding-left: 0;
+      padding-right: 0;
 			border-radius: 0;
-			font-size: 3em;
+			font-size: 3rem;
 		}
 
 		img {
@@ -137,7 +139,7 @@ $tailSize: 0.625em;
 
 			a {
 				display: table;
-				font-size: 0.75em;
+				font-size: 0.75rem;
 
 				//strip other link stuff
 				word-break: normal;
@@ -279,7 +281,7 @@ $tailSize: 0.625em;
 		clear: both;
 		font-weight: normal;
 		color: $systemGray;
-		font-size: 0.75em;
+		font-size: 0.75rem;
 	}
 
 	//time label
@@ -287,7 +289,7 @@ $tailSize: 0.625em;
 		display: block;
 		text-align: center;
 		margin: 0;
-		padding: 1em;
+		padding: 1rem;
 	}
 
 	//read receipt
@@ -314,8 +316,8 @@ $tailSize: 0.625em;
 		border-bottom: 1px solid $separator;
 		margin: 0;
 		text-align: center;
-		line-height: 3em;
 		font-size: 1.2em;
+		line-height: 3em;
 		font-weight: bold;
 		white-space: nowrap;
 
