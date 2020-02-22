@@ -1,34 +1,36 @@
-$outgoing: #DCF8C6;
-$incoming: #FFFFFF;
-$tealGreen1: #075E54;
-$tealGreen2: #128C7E;
-$chatBackground: #ECE5DD;
-$checkmarkBlue: #34B7F1;
-$lightGreen: #25D366;
+$outgoing: #dcf8c6;
+$incoming: #ffffff;
+$tealGreen1: #075e54;
+$tealGreen2: #128c7e;
+$chatBackground: #ece5dd;
+$checkmarkBlue: #34b7f1;
+$lightGreen: #25d366;
 
 $gray: #999;
 $tailSize: 1rem;
+$shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 
-/**************************************************
-*		Wrapper
-**************************************************/
+//*************************************************
+//	wrapper
+//*************************************************
 .whatsapp {
 	width: 100%;
 	max-width: 320px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: grid;
 	margin: auto;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-	background-repeat: repeat-y;
-	background-size: 100%;
+	background-attachment: fixed;
+	background-size: 320px auto;
 
 	//headers tags don't get a different font
 	* {
 		font-family: inherit;
 	}
 
-/**************************************************
-*		Texts
-**************************************************/
+//*************************************************
+//	basic text shared stuff
+//*************************************************
 	.in,
 	.out {
 		dd {
@@ -38,8 +40,8 @@ $tailSize: 1rem;
 			border-radius: 5px;
 			padding: 2px 5px;
 			margin: 1px $tailSize;
-			border-bottom: 1px solid rgba(0,0,0, 0.2);
 			z-index: 1;
+			filter: $shadow;
 
 			&:last-child {
 				margin-bottom: 1rem;
@@ -53,13 +55,15 @@ $tailSize: 1rem;
 				bottom: $tailSize * 0.25;
 				border-top: ($tailSize / 2) solid;
 				border-radius: 100%;
-				clip: rect(0px,$tailSize,$tailSize,0px);
+				clip: rect(0px, $tailSize, $tailSize, 0px);
 				z-index: -1;
 			}
 		}
 	}
 
-	/* Outgoing texts */
+//*************************************************
+//	incoming and outgoing texts
+//*************************************************
 	.out dd {
 		float: right;
 		background: $outgoing;
@@ -71,7 +75,6 @@ $tailSize: 1rem;
 		}
 	}
 
-	/* Incoming texts */
 	.in dd {
 		float: left;
 		background: $incoming;
@@ -83,28 +86,26 @@ $tailSize: 1rem;
 		}
 	}
 
-/**************************************************
-*		Time
-**************************************************/
-	.day,
-	dd[time]:after {
+//*************************************************
+//	time
+//*************************************************
+	.day {
+		background: #d4eaf4;
+		filter: $shadow;
+		border-radius: 5px;
+		padding: 0.5em;
+		margin: 1em auto;
+		text-align: center;
 		font-size: 0.75rem;//root em
 		color: $gray;
 		text-transform: uppercase;
-	}
-
-	.day {
-		width: 100px;
-		background: #D4EAF4;
-		border-radius: 5px;
-		padding: 5px;
-		margin: 10px auto;
-		text-align: center;
-		display: table;
+		font-weight: normal;
 	}
 
 	//timestamps
 	dd[time]:after {
+		font-size: 0.75rem;//root em
+		color: $gray;
 		content: attr(time);
 		white-space: nowrap;
 		text-align: right;
@@ -114,12 +115,15 @@ $tailSize: 1rem;
 	}
 	//checkmarks
 	.out dd[time]:after {
-		content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_read.png");//done_all
+		content: attr(time) " "
+			url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_read.png"); //done_all
 		&.unread {
-			content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_received.png");//done_all
+			content: attr(time) " "
+				url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_received.png"); //done_all
 		}
 		&.notreceived:after {
-			content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_no-received.png");//done
+			content: attr(time) " "
+				url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_no-received.png"); //done
 		}
 	}
 
@@ -145,9 +149,24 @@ $tailSize: 1rem;
 			}
 		}
 
+		//big emojis
+		&.emoji1 {font-size: 2.5em;}
+		&.emoji2 {font-size: 2em;}
+		&.emoji3 {font-size: 1.5em;}
+
+		&.emoji1:after,
+		&.emoji2:after,
+		&.emoji3:after {
+			display: block;
+			padding: 0;//no "before" padding needed
+			float: none;
+		}
+
+		//rich link
 		a {
 			&::after {
 				color: $checkmarkBlue;
+				text-decoration: underline;
 				word-break: break-all;
 				content: attr(href);
 				display: table-caption;
@@ -156,11 +175,9 @@ $tailSize: 1rem;
 
 			border-radius: 3px;
 			display: table;
-			background: rgba(0,0,0, 0.05);
-
-			//strip other link stuff
-			text-decoration: none;
-			border: none;
+			background: rgba(0, 0, 0, 0.05);
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			text-decoration: none;//strip other link stuff
 
 			img {
 				border-radius: 3px;
@@ -179,30 +196,17 @@ $tailSize: 1rem;
 				font-size: small;
 			}
 		}
-
-		//big emojis
-		&.emoji1 {font-size: 2.5em;}
-		&.emoji2 {font-size: 2em;}
-		&.emoji3 {font-size: 1.5em;}
-
-		&.emoji1:after,
-		&.emoji2:after,
-		&.emoji3:after {
-			display: block;
-			padding: 0;//no "before" padding needed
-			float: none;
-		}
 	}
 
-/**************************************************
-*		Contact header
-**************************************************/
+//*************************************************
+//	header
+//*************************************************
 	.contact {
 		position: relative;
 		background: $tealGreen1;
 		margin: 0;
 		line-height: 3em;
-		font-size: 1em;
+		font-size: 1rem;
 		color: white;
 		font-weight: bold;
 
@@ -217,9 +221,7 @@ $tailSize: 1rem;
 		&:before,
 		&:after {
 			position: absolute;
-			font-family: 'Material Icons';
-			// https://material.io/resources/icons/?style=baseline
-			// https://github.com/Angelmmiguel/material_icons/blob/master/app/assets/stylesheets/material_icons_unicode.css.erb
+			font-family: "Material Icons";
 			font-weight: normal;
 			font-size: 1.25em;
 		}
@@ -229,29 +231,30 @@ $tailSize: 1rem;
 			left: 5px;
 			width: 50px;
 			letter-spacing: 10px;
-			content: '\e5c4'//arrow_back
-			         '\e853';//account_circle
+			content: "\e5c4" //arrow_back
+				"\e853"; //account_circle
 		}
 
 		/* video camera + phone + ellipsis */
 		&:after {
 			right: 0;
 			letter-spacing: 0.75em;
-			content: '\e04b'//videocam
-			         '\e0cd'//phone
-			         '\e5d4';//more_vert
+			content: "\e04b" //videocam
+				"\e0cd" //phone
+				"\e5d4"; //more_vert
 		}
 	}
 
-/**************************************************
-*		Footer
-**************************************************/
+//*************************************************
+//	footer
+//*************************************************
 	.footer {
 		display: table;
 		position: relative;
 		clear: both;
 		width: 100%;
 		padding: 3px;
+		filter: $shadow;
 		box-sizing: border-box;
 
 		//mic circle
@@ -263,8 +266,8 @@ $tailSize: 1rem;
 			height: 2.3em;
 			border-radius: 100%;
 			background: $tealGreen2;
-			font-family: 'Material Icons';
-			content: '\e029';//mic
+			font-family: "Material Icons";
+			content: "\e029"; //mic
 			color: white;
 			text-align: center;
 			line-height: 2.3em;
@@ -283,28 +286,37 @@ $tailSize: 1rem;
 				position: absolute;
 				left: 0.5em;
 				height: 1.8em;
-				font-family: 'Material Icons';
+				font-family: "Material Icons";
 				letter-spacing: 14em;
-				content: '\e24e'//insert_emoticon
-				         '\e412';//photo_camera
+				content: "\e24e" //insert_emoticon
+					"\e412"; //photo_camera
 			}
 
 			//blinking blue caret
 			&::after {
 				content: "";
-				border-right: 2px solid #007aff;
+				border-right: 2px solid $tealGreen2;
 				animation: 1.5s caretblink infinite;
 			}
 			@keyframes caretblink {
-				60% { border-color: #007aff; }
-				90% { border-color: transparent; }
+				60% {border-color: $tealGreen2;}
+				90% {border-color: transparent;}
+			}
+
+			//if empty
+			&:empty::after {
+				color: $gray;
+				content: "Type a message";
+				//caret comes before, not after, the filler text
+				border: none;
+				border-left: 2px solid $tealGreen2;
 			}
 		}
 	}
 
-/**************************************************
-*		stickers
-**************************************************/
+//*************************************************
+//	stickers
+//*************************************************
 	dd.cuppy {
 		width: 3em;
 		height: 3em;
@@ -314,10 +326,11 @@ $tailSize: 1rem;
 		background-size: auto 100%;
 
 		//no tail
-		&:before {display: none;}
+		&:before {
+			display: none;
+		}
 
-		//https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty
-		&.smile {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/01_Cuppy_smile.png");}
+		&.smile {	background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/01_Cuppy_smile.png");}
 		&.lol {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/02_Cuppy_lol.png");}
 		&.rofl {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/03_Cuppy_rofl.png");}
 		&.sad {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/04_Cuppy_sad.png");}
@@ -329,4 +342,30 @@ $tailSize: 1rem;
 		&.hmm {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/10_Cuppy_hmm.png");}
 	}
 
+//*************************************************
+//	grouptext
+//*************************************************
+	&.grouptext {
+		.in[id] dd:first-of-type::before {
+			display: block;
+			font-weight: bold;
+			color: $tealGreen2;
+		}
+	}
+}
+
+//*************************************************
+//	Individual group chat names
+//*************************************************
+#Yennefer dd:first-of-type::before {
+	content: "Yennefer";
+	color: #725493;
+}
+#Jaskier dd:first-of-type::before {
+	content: "Jaskier";
+	color: #269b49;
+}
+#Geralt dd:first-of-type::before {
+	content: "Geralt";
+	color: #f07723;
 }
