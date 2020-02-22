@@ -1,0 +1,332 @@
+$outgoing: #DCF8C6;
+$incoming: #FFFFFF;
+$tealGreen1: #075E54;
+$tealGreen2: #128C7E;
+$chatBackground: #ECE5DD;
+$checkmarkBlue: #34B7F1;
+$lightGreen: #25D366;
+
+$gray: #999;
+$tailSize: 1rem;
+
+/**************************************************
+*		Wrapper
+**************************************************/
+.whatsapp {
+	width: 100%;
+	max-width: 320px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: auto;
+	background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+	background-repeat: repeat-y;
+	background-size: 100%;
+
+	//headers tags don't get a different font
+	* {
+		font-family: inherit;
+	}
+
+/**************************************************
+*		Texts
+**************************************************/
+	.in,
+	.out {
+		dd {
+			clear: both;
+			position: relative;
+			max-width: 65%;
+			border-radius: 5px;
+			padding: 2px 5px;
+			margin: 1px $tailSize;
+			border-bottom: 1px solid rgba(0,0,0, 0.2);
+			z-index: 1;
+
+			&:last-child {
+				margin-bottom: 1rem;
+			}
+
+			&:last-of-type::before {
+				content: "";
+				position: absolute;
+				width: $tailSize * 1.5;
+				height: $tailSize;
+				bottom: $tailSize * 0.25;
+				border-top: ($tailSize / 2) solid;
+				border-radius: 100%;
+				clip: rect(0px,$tailSize,$tailSize,0px);
+				z-index: -1;
+			}
+		}
+	}
+
+	/* Outgoing texts */
+	.out dd {
+		float: right;
+		background: $outgoing;
+
+		&:last-of-type::before {
+			border-color: $outgoing;
+			transform: rotate(240deg);
+			right: -$tailSize;
+		}
+	}
+
+	/* Incoming texts */
+	.in dd {
+		float: left;
+		background: $incoming;
+
+		&:last-of-type::before {
+			border-color: $incoming;
+			transform: scaleX(-1) rotate(240deg);
+			left: -$tailSize;
+		}
+	}
+
+/**************************************************
+*		Time
+**************************************************/
+	.day,
+	dd[time]:after {
+		font-size: 0.75rem;//root em
+		color: $gray;
+		text-transform: uppercase;
+	}
+
+	.day {
+		width: 100px;
+		background: #D4EAF4;
+		border-radius: 5px;
+		padding: 5px;
+		margin: 10px auto;
+		text-align: center;
+		display: table;
+	}
+
+	//timestamps
+	dd[time]:after {
+		content: attr(time);
+		white-space: nowrap;
+		text-align: right;
+		float: right;
+		padding-left: 1.5rem;
+		padding-top: 0.25rem;
+	}
+	//checkmarks
+	.out dd[time]:after {
+		content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_read.png");//done_all
+		&.unread {
+			content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_received.png");//done_all
+		}
+		&.notreceived:after {
+			content: attr(time) " " url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_no-received.png");//done
+		}
+	}
+
+//*************************************************
+//	manage different kinds of text content
+//*************************************************
+	.in dd,
+	.out dd {
+		&.pic {
+			padding: 3px;
+
+			img {
+				border-radius: 3px;
+				width: 100%;
+				display: block;
+			}
+			//Timestamp white and in image corner
+			&.solo:after {
+				color: white;
+				position: absolute;
+				bottom: 2px;
+				right: 5px;
+			}
+		}
+
+		a {
+			&::after {
+				color: $checkmarkBlue;
+				word-break: break-all;
+				content: attr(href);
+				display: table-caption;
+				caption-side: bottom;
+			}
+
+			border-radius: 3px;
+			display: table;
+			background: rgba(0,0,0, 0.05);
+
+			//strip other link stuff
+			text-decoration: none;
+			border: none;
+
+			img {
+				border-radius: 3px;
+				display: table-cell;
+				width: 100%;
+				height: 3.5rem;
+				object-fit: cover;
+			}
+
+			p {
+				display: table-cell;
+				vertical-align: middle;
+				width: 75%;
+				padding-left: 5px;
+				color: black;
+				font-size: small;
+			}
+		}
+
+		//big emojis
+		&.emoji1 {font-size: 2.5em;}
+		&.emoji2 {font-size: 2em;}
+		&.emoji3 {font-size: 1.5em;}
+
+		&.emoji1:after,
+		&.emoji2:after,
+		&.emoji3:after {
+			display: block;
+			padding: 0;//no "before" padding needed
+			float: none;
+		}
+	}
+
+/**************************************************
+*		Contact header
+**************************************************/
+	.contact {
+		position: relative;
+		background: $tealGreen1;
+		margin: 0;
+		line-height: 3em;
+		font-size: 1em;
+		color: white;
+		font-weight: bold;
+
+		//text overflow
+		text-align: left;
+		padding-left: 4em;
+		padding-right: 7.5em;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		&:before,
+		&:after {
+			position: absolute;
+			font-family: 'Material Icons';
+			// https://material.io/resources/icons/?style=baseline
+			// https://github.com/Angelmmiguel/material_icons/blob/master/app/assets/stylesheets/material_icons_unicode.css.erb
+			font-weight: normal;
+			font-size: 1.25em;
+		}
+
+		//back arrow + person icon
+		&:before {
+			left: 5px;
+			width: 50px;
+			letter-spacing: 10px;
+			content: '\e5c4'//arrow_back
+			         '\e853';//account_circle
+		}
+
+		/* video camera + phone + ellipsis */
+		&:after {
+			right: 0;
+			letter-spacing: 0.75em;
+			content: '\e04b'//videocam
+			         '\e0cd'//phone
+			         '\e5d4';//more_vert
+		}
+	}
+
+/**************************************************
+*		Footer
+**************************************************/
+	.footer {
+		display: table;
+		position: relative;
+		clear: both;
+		width: 100%;
+		padding: 3px;
+		box-sizing: border-box;
+
+		//mic circle
+		&:after {
+			position: absolute;
+			bottom: 3px;
+			right: 3px;
+			width: 2.3em;
+			height: 2.3em;
+			border-radius: 100%;
+			background: $tealGreen2;
+			font-family: 'Material Icons';
+			content: '\e029';//mic
+			color: white;
+			text-align: center;
+			line-height: 2.3em;
+		}
+
+		.typebar {
+			position: relative;
+			background: white;
+			margin: 0;
+			margin-right: 2.5em;
+			padding: 0.6em 2em;
+			border-radius: 2em;
+
+			&::before {
+				color: $gray;
+				position: absolute;
+				left: 0.5em;
+				height: 1.8em;
+				font-family: 'Material Icons';
+				letter-spacing: 14em;
+				content: '\e24e'//insert_emoticon
+				         '\e412';//photo_camera
+			}
+
+			//blinking blue caret
+			&::after {
+				content: "";
+				border-right: 2px solid #007aff;
+				animation: 1.5s caretblink infinite;
+			}
+			@keyframes caretblink {
+				60% { border-color: #007aff; }
+				90% { border-color: transparent; }
+			}
+		}
+	}
+
+/**************************************************
+*		stickers
+**************************************************/
+	dd.cuppy {
+		width: 3em;
+		height: 3em;
+		background: none;
+		border: none;
+		background-repeat: no-repeat;
+		background-size: auto 100%;
+
+		//no tail
+		&:before {display: none;}
+
+		//https://github.com/WhatsApp/stickers/tree/master/iOS/WAStickersThirdParty
+		&.smile {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/01_Cuppy_smile.png");}
+		&.lol {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/02_Cuppy_lol.png");}
+		&.rofl {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/03_Cuppy_rofl.png");}
+		&.sad {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/04_Cuppy_sad.png");}
+		&.cry {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/05_Cuppy_cry.png");}
+		&.love {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/06_Cuppy_love.png");}
+		&.hate {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/07_Cuppy_hate.png");}
+		&.lovewithmug {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/08_Cuppy_lovewithmug.png");}
+		&.lovewithcookie {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/09_Cuppy_lovewithcookie.png");}
+		&.hmm {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/10_Cuppy_hmm.png");}
+	}
+
+}
