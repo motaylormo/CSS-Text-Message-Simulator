@@ -25,3 +25,10 @@ So with any of them, the basic structure is something like this:
 
 </dl>
 ```
+
+# imessage
+https://www.theverge.com/2011/12/13/2612736/ios-history-iphone-ipad
+
+old: up until ios 6
+
+new: ios 7 and onward
