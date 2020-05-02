@@ -1,4 +1,4 @@
-Uses [Font Awesome](https://fontawesome.com/).
+Uses icons from [Font Awesome](https://fontawesome.com/).
 
 # Features
 * Images
@@ -11,7 +11,6 @@ Uses [Font Awesome](https://fontawesome.com/).
 * Contact header
 * Type bar footer
   * With or without unsent text
-
 ### Wrapper mode options
 * `darkmode`
 * `sms`
