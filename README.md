@@ -8,27 +8,11 @@ Simulate text message conversations in various messaging apps.
 * [Snapchat](https://codepen.io/motaylormo/pen/OJVRWzv)
 * [LINE](https://codepen.io/motaylormo/pen/eYNBPvE)
 
-# Structure
-Everything is based off the `<dl>` list, with `<dt>` being used for the names of the people sending the texts, and `<dd>` being for the texts themselves.
+# History
+This was originally made for literary purposes: If you're writing a story which involves the characters texting each other, this would be used to format those text messages. I wanted it to look as close to the actual app as I could make it, but have it be basically non-interactive.
 
-A `<dt>` and the `<dd>` that go with it are wrapped in a `<div>`, either `class="out"` for outgoing texts sent from the point-of-view phone, or `class="in"` for incoming texts sent from a different phone.
+In that original context, readers had an option of turning the CSS off. The HTML without the CSS would still need to be compensable. The whole structure is based around a `<dl>` list, where the people's names would be in `<dt>` and their texts would be in `<dd>`.
 
-So with any of them, the basic structure is something like this:
-
-```html
-<dl class="wrapper">
-
-	<div class="in">
-		<dt>Aulus Agerius</dt>
-		<dd>are you there yet?</dd>
-		<dd>Where are you?</dd>
-	</div>
-
-	<div class="out">
-		<dt>Numerius Negidius</dt>
-		<dd>I'm waiting outside</dd>
-		<dd>wait I can see you now</dd>
-	</div>
-
-</dl>
-```
+A `<dt>` and the `<dd>` that go with it are wrapped in a `<div>`:
+* `class="out"` for outgoing texts sent from the point-of-view phone
+* `class="in"` for incoming texts sent from a different phone
