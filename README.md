@@ -4,7 +4,7 @@ Simulate text message conversations in various messaging apps.
 # [CodePen](https://codepen.io/collection/DQOQON)
 * [iMessage (iOS 7 and up)](https://codepen.io/motaylormo/pen/ZEGOqQr)
 * [iMessage (iOS 1 - 6)](https://codepen.io/motaylormo/pen/KKpaydv)
-* [WhatsApp](https://codepen.io/motaylormo/pen/PoqzxNO)
+* [WhatsApp](https://codepen.io/motaylormo/pen/LYVLmQP)
 * [Snapchat](https://codepen.io/motaylormo/pen/OJVRWzv)
 * [LINE](https://codepen.io/motaylormo/pen/eYNBPvE)
 
