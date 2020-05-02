@@ -1,0 +1,286 @@
+$tailSize: 0.3rem;
+$bubble-corners: 1rem;
+$bubble-padding: 0.5rem 0.75rem;
+
+//*************************************************
+//	wrapper
+//*************************************************
+.line {
+	width: 100%;
+	max-width: 320px;
+	display: grid;
+	margin: auto;
+	font-family: Roboto, sans-serif;
+	background-image: url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/LINE/images/background_to_repeat.png");
+	background-position: center;
+	background-attachment: fixed;
+	background-size: 320px auto;
+
+	//headers tags don't get a different font
+	* {
+		font-family: inherit;
+	}
+	//*************************************************
+	//	basic text shared stuff
+	//*************************************************
+	.in,
+	.out {
+		dd {
+			max-width: 65%;
+			clear: both;
+			position: relative;
+			border-radius: $bubble-corners;
+			padding: $bubble-padding;
+			margin: 1px ($tailSize + 0.5rem);
+			z-index: 1;
+			&::before {
+				content: "";
+				position: absolute;
+				top: -0.75rem;
+				width: 1rem;
+				height: 1rem;
+				border-bottom: 0.5rem solid;
+				z-index: -1;
+			}
+			//      &:last-child {
+			margin-bottom: 0.5rem;
+		}
+		//    }
+	}
+
+	/* Outgoing texts */
+	.out dd {
+		float: right;
+		background: #72de54;
+		&::before {
+			right: -$tailSize;
+			border-color: #72de54;
+			border-bottom-right-radius: 0.5rem 0.75rem;
+		}
+	}
+
+	/* Incoming texts */
+	.in dd {
+		float: left;
+		background: white;
+		&::before {
+			left: -$tailSize;
+			border-color: white;
+			border-bottom-left-radius: 0.5rem 0.75rem;
+		}
+	}
+
+	/**************************************************
+*		Pictures
+**************************************************/
+	.in dd,
+	.out dd {
+		&.pic,
+		&.emoji {
+			padding: 0;
+			background: none !important;
+			&:before {
+				content: none;
+			}
+		}
+
+		&.pic img {
+			border-radius: 0.5rem;
+			width: 100%;
+			display: block; /* without "block" there's extra space after */
+		}
+
+		&.emoji {
+			font-size: 3em; /* 3x font for emojis */
+		}
+
+		//*************************************************
+		//	non-video rich link
+		//*************************************************
+		a {
+			//strip other link stuff
+			text-decoration: none;
+			color: inherit;
+
+			&::before {
+				color: blue;
+				text-decoration: underline;
+				word-break: break-all;
+				content: attr(href);
+				grid-column: 1 / span 2;
+				margin-bottom: 0.5rem;
+			}
+
+			display: grid;
+			grid-template-columns: auto 20%;
+
+			img {
+				font-size: 0.8rem;
+				grid-column: 2 / span 1;
+				grid-row: 2 / span 1;
+				width: 3em * 1.2;
+				height: 3em * 1.2;
+				object-fit: cover;
+				object-position: top;
+				border-radius: 0.5em;
+			}
+
+			figcaption {
+				grid-column: 1 / span 1;
+				grid-row: 2 / span 1;
+				font-size: 0.8rem;
+				border-left: 2px solid lightgray;
+				padding: 0 0.5rem;
+
+				line-height: 1em * 1.2;
+				height: 3em * 1.2;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+
+				b {
+					display: block;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+			}
+		}
+		//*************************************************
+		//	video rich link
+		//*************************************************
+		&.vid {
+			padding: 0;
+			background: none;
+
+			a {
+				display: table;
+				width: auto;
+				//strip other link stuff
+				text-decoration: none;
+				color: inherit;
+
+				&::before {
+					color: blue;
+					text-decoration: underline;
+					word-break: break-all;
+					content: attr(href);
+					display: block;
+					background: white;
+					border-radius: $bubble-corners;
+					padding: $bubble-padding;
+					margin-bottom: 2px;
+				}
+
+				iframe {
+					border-radius: $bubble-corners $bubble-corners 0 0;
+					overflow: hidden;
+					display: table-row;
+					border: none;
+					width: 210px; //default video aspect ratio 16:9
+					height: 118px;
+					max-width: 100%;
+				}
+
+				// aspect ratio 4:3
+				iframe[class="SD" i] {
+					width: 210px;
+					height: 157px;
+				}
+
+				iframe + figcaption {
+					background: white;
+					border: none;
+					border-radius: 0 0 $bubble-corners $bubble-corners;
+					display: table-caption;
+					caption-side: bottom;
+					height: auto;
+					padding: $bubble-padding;
+					
+					b {
+					white-space: normal;
+						margin-bottom: 0.5em;
+					}
+				}
+			}
+		}
+	}
+
+	/**************************************************
+*		Time
+**************************************************/
+	dd[time]:after {
+		content: attr(time);
+		color: white;
+		font-size: 0.6rem;
+		position: absolute;
+		width: 4.5em;
+		bottom: 0.5em;
+	}
+
+	.in dd[time]:after {
+		right: -5em;
+		text-align: left;
+	}
+
+	.out dd[time] {
+		&:after {
+			content: "Read " attr(time);
+			left: -5em;
+			text-align: right;
+		}
+		&.unread:after {
+			content: attr(time);
+		}
+	}
+
+	.day {
+		border-radius: 1.5em;
+		margin: 1em auto;
+		padding: 0.5em 1em;
+		background: rgba(0, 0, 0, 0.2);
+		color: white;
+		font-weight: normal;
+		font-size: 0.75em;
+	}
+/**************************************************
+*		Contact header
+**************************************************/
+	.contact {
+		position: relative;
+		display: block;
+		background: #24304a;
+		color: white;
+		margin: 0;
+		padding: 0.5em;
+		line-height: 2em;
+		font-size: inherit;
+		font-weight: bold;
+		text-align: left;
+		padding-left: 2.5em;
+		padding-right: 7.5em;
+
+		&:before,
+		&:after {
+			position: absolute;
+			font-family: "Material Icons";
+			font-weight: normal;
+			font-size: 1.25em;
+		}
+
+		&:before {
+			left: 5px;
+			width: 1em;
+			content: "\e5c4"; //arrow_back
+		}
+
+		&:after {
+			right: 0;
+			letter-spacing: 0.75em;
+			content: "\e0cd" //phone
+				"\e5d2" //menu
+				"\e5cf"; //expand_more
+		}
+	}
+}
