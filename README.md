@@ -1,9 +1,9 @@
 # CSS-Text-Message-Simulator
-Simulate text message conversations in: iMessage (iOS 1 - 6),  iMessage (iOS 7 and up), WhatsApp, Snapchat, and LINE.
+Simulate text message conversations in various messaging apps.
 
 # CodePen
-* [iMessage (7+)](https://codepen.io/motaylormo/pen/ZEGOqQr)
-* [iMessage (1 - 6)](https://codepen.io/motaylormo/pen/KKpaydv)
+* [iMessage (iOS 7 and up)](https://codepen.io/motaylormo/pen/ZEGOqQr)
+* [iMessage (iOS 1 - 6)](https://codepen.io/motaylormo/pen/KKpaydv)
 * [WhatsApp](https://codepen.io/motaylormo/pen/PoqzxNO)
 * [Snapchat](https://codepen.io/motaylormo/pen/OJVRWzv)
 * [LINE](https://codepen.io/motaylormo/pen/eYNBPvE)
