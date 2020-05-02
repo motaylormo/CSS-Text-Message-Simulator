@@ -1,3 +1,5 @@
+Uses [Font Awesome](https://fontawesome.com/).
+
 # Features
 * Images
 * Emojis
