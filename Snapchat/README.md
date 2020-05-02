@@ -1,5 +1,3 @@
-# CodePen.io
-* [Snapchat](https://codepen.io/motaylormo/pen/OJVRWzv)
-
+Uses icons from [Font Awesome](https://fontawesome.com/).
 
 https://docs.snapchat.com/docs/design-guidelines/
