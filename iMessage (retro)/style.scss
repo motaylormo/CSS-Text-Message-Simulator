@@ -1,0 +1,304 @@
+$backgroundColor: #dbe2ed;
+$timeColor: #8692a7;
+$basicBorder: 1px solid rgba(0, 0, 0, 0.5);
+//texts
+$outgoingBlue: #82c1ff; 
+$outgoingGreen: #8fd13e;
+$incomingColor: #e0e0e0;
+
+//*************************************************
+//	wrapper
+//*************************************************
+.imessageorig {
+	width: 100%;
+	max-width: 320px;
+	display: grid;
+	margin: auto;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background-color: $backgroundColor;
+
+	//headers tags don't get a different font
+	* {
+		font-family: inherit;
+	}
+
+	//*************************************************
+	//	texts
+	//*************************************************
+	.in dd,
+	.out dd {
+		position: relative;
+		clear: both;
+		z-index: 1;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		padding: 0.3em 0.8em;
+		margin: 0.25em 0.5em;
+		max-width: 60%;
+		border-radius: 1em;
+		border: $basicBorder;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		overflow: hidden;
+
+		//shine at top and bottom of bubble
+		&::before,
+		&::after {
+			content: "";
+			z-index: -1;
+			position: absolute;
+		}
+		&::before {
+			top: 0;
+			left: 0.5em;
+			right: 0.5em;
+			height: 1em;
+			border-radius: 1em;
+			background: linear-gradient(
+				rgba(255, 255, 255, 0.75),
+				rgba(255, 255, 255, 0.25)
+			);
+		}
+		&::after {
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 1em;
+			filter: contrast(150%) brightness(150%);
+			opacity: 0.65;
+		}
+	}
+
+	//Outgoing texts
+	.out dd {
+		float: right;
+		background-color: $outgoingBlue;
+		&:after {
+			background: linear-gradient(transparent, $outgoingBlue);
+		}
+	}
+
+	//Incoming texts
+	.in dd {
+		float: left;
+		background: $incomingColor;
+		&:after {
+			background: linear-gradient(transparent, $incomingColor);
+		}
+	}
+
+	//*************************************************
+	//	manage different kinds of text content
+	//*************************************************
+	dd.pic {
+		padding: 0;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			display: block;
+		}
+
+		//lays OVER picture rather than UNDER text
+		&:before,
+		&::after {
+			z-index: 0;
+		}
+		&::after {
+			height: 0.75em;
+			opacity: 0.8;
+			background: linear-gradient(transparent, white) !important;
+		}
+	}
+
+	//link
+	dd a {
+		word-break: break-all; //linebreak when space runs out
+		color: #084be6;
+	}
+
+//*************************************************
+//	little grey text stuff
+//	(aka time + read receipts + grouptext-mode names)
+//*************************************************
+	.time,
+	&.grouptext .in[name]::before,
+	.read {
+		font-size: 0.75em;
+		color: $timeColor;
+		text-shadow: 0 1px 0 white;
+		clear: both;
+	}
+	
+	//time label
+	.time {
+		font-weight: bold;
+		display: block;
+		margin: auto;
+		padding: 0.5rem;
+	}
+
+	//read receipt
+	.read {
+		float: right;
+		display: table;
+		padding: 0 1rem;
+		margin: 0;
+	}
+	
+	//Show the names with incoming texts for grouptext mode
+	&.grouptext .in[name]::before {
+		content: attr(name);
+		padding-left: 2em;
+		display: table;
+	}
+	
+	//*************************************************
+	//	contact header
+	//*************************************************
+	.contact {
+		position: relative;
+		margin: 0;
+		font-size: 1.1rem;
+		padding: 0.75rem;
+		color: white;
+		font-weight: bold;
+		text-shadow: 0 -1.5px 0 rgba(0, 0, 0, 0.4);
+		background: linear-gradient(
+			to bottom,
+			#b2bdcc,
+			#8a9cb4 50%,
+			#7c91ad 50%,
+			#6e85a3
+		);
+		box-shadow: 0 2px 0 black;
+
+		//text overflow
+		text-align: center;
+		padding-left: 5.5em;
+		padding-right: 4.5em;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		//buttons
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0.4rem;
+			bottom: 0.4rem;
+			min-width: 2.5rem;
+			backdrop-filter: brightness(80%) saturate(200%);
+			border-radius: 0.5rem;
+			box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8),//inside
+					0 1px 1px rgba(255, 255, 255, 0.4); //bottom outside rim
+			border: $basicBorder;
+			font-size: 0.65em;
+			padding: 0.75em;
+		}
+		&:before {
+			left: 0.4rem;
+			content: "Messages";
+		}
+		&:after {
+			right: 0.4rem;
+			content: "Edit";
+		}
+	}
+
+	//*************************************************
+	//	typebar footer
+	//*************************************************
+	.footer {
+		display: grid;
+		position: relative;
+		background: linear-gradient(to top, #c5c7cb, #fafbfb);
+		border-top: 1px solid rgba(0, 0, 0, 0.15);
+
+		.typebar,
+		&:before,
+		&:after {
+			margin: 0.25rem;
+			border-radius: 1rem;
+			border: $basicBorder;
+			box-sizing: border-box;
+			box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.4),
+				0 1px 1px rgba(255, 255, 255, 0.7); //white rim
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			bottom: 0;
+			color: white;
+			text-shadow: 0 -1px 1.5px rgba(0, 0, 0, 0.5);
+			font-weight: bold;
+			text-align: center;
+			line-height: 1.25rem;
+			padding: 0.25rem;
+		}
+
+		&:before {
+			left: 0;
+			width: 2rem;
+			background: linear-gradient(to bottom, #a7aeb6, #7c8693 48%, #5c6978 52%);
+			font-family: FontAwesome;
+			content: "\f030"; //https://fontawesome.com/icons/camera?style=solid
+		}
+
+		&:after {
+			right: 0;
+			width: 4rem;
+			content: "Send";
+			background-image: linear-gradient(to bottom, $outgoingBlue 0%, #084be6 50%);
+		}
+
+		/* type bar */
+		.typebar {
+			display: block;
+			padding: 0.25em 0.75em;
+			margin-left: 2.5em;
+			margin-right: 4.5em;
+			background: white;
+			box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5),
+				0 1px 0 rgba(255, 255, 255, 0.7);
+			word-wrap: break-word;
+
+			//blinking blue caret
+			&::after {
+				content: "";
+				border-right: 2px solid #2860ee;
+				animation: 1.5s caretblink infinite;
+			}
+			@keyframes caretblink {
+				60% { border-color: #2860ee; }
+				90% { border-color: transparent; }
+			}
+
+			//if empty
+			&:empty::after {
+				color: $timeColor;
+				content: "iMessage";
+				border: none;
+			}
+		}
+	}
+
+	//*************************************************
+	//	SMS mode (aka green)
+	//*************************************************
+	&.sms .out dd,
+	.out.sms dd {
+		background: $outgoingGreen;
+		&:after {
+			background: linear-gradient(transparent, $outgoingGreen);
+		}
+	}
+	&.sms .footer {
+	&:after {
+    background-image: linear-gradient(to bottom, $outgoingGreen 0%, #1d9200 50%);
+		background-color: $outgoingGreen;
+		}
+		.typebar:empty::after {
+				content: "Text Message";
+		}
+	}
+}
