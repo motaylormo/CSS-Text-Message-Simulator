@@ -28,46 +28,43 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		font-family: inherit;
 	}
 
-//*************************************************
-//	basic text shared stuff
-//*************************************************
-	.in,
-	.out {
-		dd {
-			clear: both;
-			position: relative;
-			max-width: 65%;
-			border-radius: 5px;
-			padding: 2px 5px;
-			margin: 1px $tailSize;
-			z-index: 1;
-			filter: $shadow;
+	//*************************************************
+	//	basic text shared stuff
+	//*************************************************
+	.in dd,
+	.out dd {
+		clear: both;
+		position: relative;
+		max-width: 65%;
+		border-radius: 5px;
+		padding: 2px 5px;
+		margin: 1px $tailSize;
+		z-index: 1;
+		filter: $shadow;
 
-			&:last-child {
-				margin-bottom: 1rem;
-			}
+		&:last-child {
+			margin-bottom: 1rem;
+		}
 
-			&:last-of-type::before {
-				content: "";
-				position: absolute;
-				width: $tailSize * 1.5;
-				height: $tailSize;
-				bottom: $tailSize * 0.25;
-				border-top: ($tailSize / 2) solid;
-				border-radius: 100%;
-				clip: rect(0px, $tailSize, $tailSize, 0px);
-				z-index: -1;
-			}
+		&:last-of-type::before {
+			content: "";
+			position: absolute;
+			width: $tailSize * 1.5;
+			height: $tailSize;
+			bottom: $tailSize * 0.25;
+			border-top: ($tailSize / 2) solid;
+			border-radius: 100%;
+			clip: rect(0px, $tailSize, $tailSize, 0px);
+			z-index: -1;
 		}
 	}
 
-//*************************************************
-//	incoming and outgoing texts
-//*************************************************
+	//*************************************************
+	//	incoming and outgoing texts
+	//*************************************************
 	.out dd {
 		float: right;
 		background: $outgoing;
-
 		&:last-of-type::before {
 			border-color: $outgoing;
 			transform: rotate(240deg);
@@ -78,7 +75,6 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 	.in dd {
 		float: left;
 		background: $incoming;
-
 		&:last-of-type::before {
 			border-color: $incoming;
 			transform: scaleX(-1) rotate(240deg);
@@ -86,9 +82,9 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		}
 	}
 
-//*************************************************
-//	time
-//*************************************************
+	//*************************************************
+	//	time
+	//*************************************************
 	.day {
 		background: #d4eaf4;
 		filter: $shadow;
@@ -96,7 +92,7 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		padding: 0.5em;
 		margin: 1em auto;
 		text-align: center;
-		font-size: 0.75rem;//root em
+		font-size: 0.75rem;
 		color: $gray;
 		text-transform: uppercase;
 		font-weight: normal;
@@ -104,7 +100,7 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 
 	//timestamps
 	dd[time]:after {
-		font-size: 0.75rem;//root em
+		font-size: 0.75rem;
 		color: $gray;
 		content: attr(time);
 		white-space: nowrap;
@@ -114,22 +110,28 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		padding-top: 0.25rem;
 	}
 	//checkmarks
-	.out dd[time]:after {
-		content: attr(time) " "
-			url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_read.png"); //done_all
-		&.unread {
-			content: attr(time) " "
-				url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_received.png"); //done_all
+	.out dd[time] {
+		&::after {
+			content: attr(time);
+
+			background-repeat: no-repeat;
+			background-position: right;
+			background-size: auto 1.2ch;
+			padding-right: 2ch;
+			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/Checkmark2.png");
 		}
-		&.notreceived:after {
-			content: attr(time) " "
-				url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/WhatsApp/images/Checkmark_no-received.png"); //done
+		&.unread::after,
+		&.notreceived::after {
+			filter: grayscale(100%);
+		}
+		&.notreceived::after {
+			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/Checkmark.png");
 		}
 	}
 
-//*************************************************
-//	manage different kinds of text content
-//*************************************************
+	//*************************************************
+	//	manage different kinds of text content
+	//*************************************************
 	.in dd,
 	.out dd {
 		&.pic {
@@ -158,7 +160,7 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		&.emoji2:after,
 		&.emoji3:after {
 			display: block;
-			padding: 0;//no "before" padding needed
+			padding: 0; //no "before" padding needed
 			float: none;
 		}
 
@@ -177,7 +179,7 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 			display: table;
 			background: rgba(0, 0, 0, 0.05);
 			border: 1px solid rgba(0, 0, 0, 0.1);
-			text-decoration: none;//strip other link stuff
+			text-decoration: none; //strip other link stuff
 
 			img {
 				border-radius: 3px;
@@ -198,9 +200,9 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		}
 	}
 
-//*************************************************
-//	header
-//*************************************************
+	//*************************************************
+	//	header
+	//*************************************************
 	.contact {
 		position: relative;
 		background: $tealGreen1;
@@ -245,9 +247,9 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 		}
 	}
 
-//*************************************************
-//	footer
-//*************************************************
+	//*************************************************
+	//	footer
+	//*************************************************
 	.footer {
 		display: table;
 		position: relative;
@@ -313,59 +315,4 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 			}
 		}
 	}
-
-//*************************************************
-//	stickers
-//*************************************************
-	dd.cuppy {
-		width: 3em;
-		height: 3em;
-		background: none;
-		border: none;
-		background-repeat: no-repeat;
-		background-size: auto 100%;
-
-		//no tail
-		&:before {
-			display: none;
-		}
-
-		&.smile {	background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/01_Cuppy_smile.png");}
-		&.lol {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/02_Cuppy_lol.png");}
-		&.rofl {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/03_Cuppy_rofl.png");}
-		&.sad {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/04_Cuppy_sad.png");}
-		&.cry {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/05_Cuppy_cry.png");}
-		&.love {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/06_Cuppy_love.png");}
-		&.hate {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/07_Cuppy_hate.png");}
-		&.lovewithmug {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/08_Cuppy_lovewithmug.png");}
-		&.lovewithcookie {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/09_Cuppy_lovewithcookie.png");}
-		&.hmm {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/10_Cuppy_hmm.png");}
-	}
-
-//*************************************************
-//	grouptext
-//*************************************************
-	&.grouptext {
-		.in[id] dd:first-of-type::before {
-			display: block;
-			font-weight: bold;
-			color: $tealGreen2;
-		}
-	}
-}
-
-//*************************************************
-//	Individual group chat names
-//*************************************************
-#Yennefer dd:first-of-type::before {
-	content: "Yennefer";
-	color: #725493;
-}
-#Jaskier dd:first-of-type::before {
-	content: "Jaskier";
-	color: #269b49;
-}
-#Geralt dd:first-of-type::before {
-	content: "Geralt";
-	color: #f07723;
 }
