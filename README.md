@@ -1,5 +1,12 @@
 # CSS-Text-Message-Simulator
-Simulate text message conversations in: circa 2019 iMessage, circa 2012 iMessage, WhatsApp, and Snapchat.
+Simulate text message conversations in: iMessage (iOS 1 - 6),  iMessage (iOS 7 and up), WhatsApp, Snapchat, and LINE.
+
+# CodePen
+* [https://codepen.io/motaylormo/pen/ZEGOqQr iMessage (7+)]
+* [https://codepen.io/motaylormo/pen/KKpaydv iMessage (1 - 6)]
+* [https://codepen.io/motaylormo/pen/PoqzxNO WhatsApp]
+* [https://codepen.io/motaylormo/pen/OJVRWzv Snapchat]
+* [https://codepen.io/motaylormo/pen/eYNBPvE LINE]
 
 # Structure
 Everything is based off the `<dl>` list, with `<dt>` being used for the names of the people sending the texts, and `<dd>` being for the texts themselves.
@@ -25,10 +32,3 @@ So with any of them, the basic structure is something like this:
 
 </dl>
 ```
-
-# imessage
-https://www.theverge.com/2011/12/13/2612736/ios-history-iphone-ipad
-
-old: up until ios 6
-
-new: ios 7 and onward
