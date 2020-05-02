@@ -2,16 +2,16 @@ $tailSize: 0.3rem;
 $bubble-corners: 1rem;
 $bubble-padding: 0.5rem 0.75rem;
 
-//*************************************************
-//	wrapper
-//*************************************************
+/**************************************************
+*		wrapper
+**************************************************/
 .line {
 	width: 100%;
 	max-width: 320px;
 	display: grid;
 	margin: auto;
 	font-family: Roboto, sans-serif;
-	background-image: url("https://raw.githubusercontent.com/Azdaema/AO3-Skin_Messaging/master/LINE/images/background_to_repeat.png");
+	background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/LINE/background_to_repeat.png");
 	background-position: center;
 	background-attachment: fixed;
 	background-size: 320px auto;
@@ -20,32 +20,30 @@ $bubble-padding: 0.5rem 0.75rem;
 	* {
 		font-family: inherit;
 	}
-	//*************************************************
-	//	basic text shared stuff
-	//*************************************************
-	.in,
-	.out {
-		dd {
-			max-width: 65%;
-			clear: both;
-			position: relative;
-			border-radius: $bubble-corners;
-			padding: $bubble-padding;
-			margin: 1px ($tailSize + 0.5rem);
-			z-index: 1;
-			&::before {
-				content: "";
-				position: absolute;
-				top: -0.75rem;
-				width: 1rem;
-				height: 1rem;
-				border-bottom: 0.5rem solid;
-				z-index: -1;
-			}
-			//      &:last-child {
-			margin-bottom: 0.5rem;
+
+/**************************************************
+*		basic text shared stuff
+**************************************************/
+	.in dd,
+	.out dd {
+		max-width: 65%;
+		clear: both;
+		position: relative;
+		border-radius: $bubble-corners;
+		padding: $bubble-padding;
+		margin: 1px ($tailSize + 0.5rem);
+		margin-bottom: 0.5rem;
+		z-index: 1;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -0.75rem;
+			width: 1rem;
+			height: 1rem;
+			border-bottom: 0.5rem solid;
+			z-index: -1;
 		}
-		//    }
 	}
 
 	/* Outgoing texts */
@@ -70,7 +68,7 @@ $bubble-padding: 0.5rem 0.75rem;
 		}
 	}
 
-	/**************************************************
+/**************************************************
 *		Pictures
 **************************************************/
 	.in dd,
@@ -90,13 +88,51 @@ $bubble-padding: 0.5rem 0.75rem;
 			display: block; /* without "block" there's extra space after */
 		}
 
+		//3x font for emojis
 		&.emoji {
-			font-size: 3em; /* 3x font for emojis */
+			font-size: 3em;
 		}
+	}
 
-		//*************************************************
-		//	non-video rich link
-		//*************************************************
+/**************************************************
+*		Time
+**************************************************/
+	dd[time]::after {
+		content: attr(time);
+		color: white;
+		font-size: 0.6rem;
+		position: absolute;
+		width: 7.7ch;
+		bottom: 0.5em;
+	}
+	.out dd[time]:not(.unread)::after {
+		content: "Read " attr(time);
+	}
+
+	.in dd[time]::after {
+		right: -5em;
+		text-align: left;
+	}
+	.out dd[time]::after {
+		left: -5em;
+		text-align: right;
+	}
+
+	.day {
+		border-radius: 1.5em;
+		margin: 1em auto;
+		padding: 0.5em 1em;
+		background: rgba(0, 0, 0, 0.2);
+		color: white;
+		font-weight: normal;
+		font-size: 0.75em;
+	}
+
+/**************************************************
+*		non-video rich link
+**************************************************/
+	.in dd,
+	.out dd {
 		a {
 			//strip other link stuff
 			text-decoration: none;
@@ -147,9 +183,10 @@ $bubble-padding: 0.5rem 0.75rem;
 				}
 			}
 		}
-		//*************************************************
-		//	video rich link
-		//*************************************************
+
+/**************************************************
+*		video rich link
+**************************************************/
 		&.vid {
 			padding: 0;
 			background: none;
@@ -197,9 +234,9 @@ $bubble-padding: 0.5rem 0.75rem;
 					caption-side: bottom;
 					height: auto;
 					padding: $bubble-padding;
-					
+
 					b {
-					white-space: normal;
+						white-space: normal;
 						margin-bottom: 0.5em;
 					}
 				}
@@ -207,43 +244,6 @@ $bubble-padding: 0.5rem 0.75rem;
 		}
 	}
 
-	/**************************************************
-*		Time
-**************************************************/
-	dd[time]:after {
-		content: attr(time);
-		color: white;
-		font-size: 0.6rem;
-		position: absolute;
-		width: 4.5em;
-		bottom: 0.5em;
-	}
-
-	.in dd[time]:after {
-		right: -5em;
-		text-align: left;
-	}
-
-	.out dd[time] {
-		&:after {
-			content: "Read " attr(time);
-			left: -5em;
-			text-align: right;
-		}
-		&.unread:after {
-			content: attr(time);
-		}
-	}
-
-	.day {
-		border-radius: 1.5em;
-		margin: 1em auto;
-		padding: 0.5em 1em;
-		background: rgba(0, 0, 0, 0.2);
-		color: white;
-		font-weight: normal;
-		font-size: 0.75em;
-	}
 /**************************************************
 *		Contact header
 **************************************************/
