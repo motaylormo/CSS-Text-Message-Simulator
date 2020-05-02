@@ -17,34 +17,46 @@ $border: #d9d9d9;
 		font-family: inherit;
 	}
 
-	//matching font style of both names and dates
-	dt,
-	.day {
+	//*************************************************
+	//	basics
+	//*************************************************
+	 //matching font style of both names and dates
+	.day,
+	.in[name]::before, .out[name]::before,
+	.banner {
 		text-transform: uppercase;
 		font-weight: normal;
 		letter-spacing: 1px;
 		font-size: 0.75em;
 	}
 
-	.day {
+	.in[name]::before,
+	.out[name]::before {
+		content: attr(name);
+		position: absolute;
+		top: -1rem;
+		left: -3px;
+	}
+
+	.day,
+	.banner {
 		color: $border;
 		margin: auto;
 		margin-top: 0.5em;
 	}
-
-//*************************************************
-//	basic messages
-//*************************************************
+	
 	.in,
 	.out {
-	  margin: 0.25rem 0.75rem;
-		
+		position: relative;
+		margin: 0.25rem 0.75rem;
+		margin-top: 1.5rem;//space for name
+		border-left: solid 2px;
+		padding-left: 0.75rem;
+
 		dd {
+			position: relative;
 			margin: 0;
-			margin-left: 2px;
 			padding: 0.25rem 0;
-			padding-left: 0.75rem;
-			border-left: solid 2px;
 
 			&.emoji {
 				font-size: 3em;
@@ -54,19 +66,23 @@ $border: #d9d9d9;
 
 	//Outgoing/red
 	.out {
-		dt { color: $red; }
-		dd { border-color: $red; }
+		border-color: $red;
+		&[name]::before {
+			color: $red;
+		}
 	}
 
 	//Incoming/blue
 	.in {
-		dt { color: $blue; }
-		dd { border-color: $blue; }
+		border-color: $blue;
+		&[name]::before {
+			color: $blue;
+		}
 	}
 
-//*************************************************
-//	Rich link
-//*************************************************
+	//*************************************************
+	//	Rich link
+	//*************************************************
 	dd a {
 		color: inherit;
 		text-decoration: none;
@@ -84,7 +100,7 @@ $border: #d9d9d9;
 			object-fit: cover;
 		}
 
-		p {
+		.caption {
 			display: table-cell;
 			vertical-align: middle;
 			width: 75%;
@@ -93,92 +109,110 @@ $border: #d9d9d9;
 			font-size: small;
 		}
 	}
-//*************************************************
-//	icons
-//	https://support.snapchat.com/en-US/a/friends-screen-icon-guide
-//*************************************************
+	//*************************************************
+	//	icons
+	//	https://support.snapchat.com/en-US/a/friends-screen-icon-guide
+	//*************************************************
 	.icon {
+		display: table;
+		height: 2em;
+		width: 100%;
+		box-sizing: border-box;
+		border-radius: 4px;
+		border: 0.5px solid $border;
+		background: white;
+
+		&::before {
+			display: table-cell;
+			content: "";
+			width: 3rem;
+			background-repeat: no-repeat;
+			background-size: auto 1rem;
+			background-position: center;
+		}
 
 		&::after {
-			display: table;
-			padding: 1em;
-			box-sizing: border-box;
-			width: 100%;
-			border-radius: 4px;
-			border: 1px solid $border;
-
-			//image part
-			background-repeat: no-repeat;
-			background-size: auto 1em;
-			background-position: 1em;
-
-			//text part
-			padding-left: 3em;
+			display: table-cell;
 			font-weight: bold;
+			padding: 0.5rem;
+			padding-left: 0;
 		}
 
-		&.opened::after {
-				content: "Opened";
-			}
+		&.opened::after {content: "Opened";}
 
-		&.unopened::after {
-				content: "Delivered";
-			}
-
-		&.screenshot {
-			&::after {
-				content: "Screenshot!";
-				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.7.png");
-			}
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.3.png"); }
-			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.9.png"); }
-		}
-
-		&.replay {
-			&::after {
-				content: "Replay!";
-				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.8.png");
-			}
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.4.png"); }
-		}
+		&.unopened::after {content: "Delivered";}
 	}
 
 	//incoming snap icons (aka the square ones)
 	.in .icon {
+		//solid
+		&.unopened {
+			&::after {content: "Press and hold to view";}
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.4.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.1.png");}
+			&.blue::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support16.2.png");}
+		}
+		//outline
 		&.opened {
-			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.5.png"); }
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.2.png"); }
-			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support16.1.png"); }
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.5.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.2.png");}
+			&.blue::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support16.1.png");}
+		}
+		
+		&.screenshot {
+			&::after {content: "Screenshot!";}
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.7.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.3.png");}
+			&.blue::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.9.png");}
 		}
 
-		&.unopened {
-			&::after {
-				content: "Press and hold to view";
-				background-image: url("https://support-tools.storage.googleapis.com/articles/support14.4.png");
-			}
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.1.png"); }
-			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support16.2.png"); }
+		&.replay {
+			&::after {content: "Replay!";}
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.8.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.4.png");}
 		}
 	}
 
 	//outgoing snap icons (aka the arrow shaped ones)
 	.out .icon {
-		&.opened {
-			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.3.png"); }
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.0.png"); }
-			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.6.png"); }
-		}
-
+		//solid
 		&.unopened {
-			&::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.6.png"); }
-			&.purple::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support14.9.png"); }
-			&.blue::after { background-image: url("https://support-tools.storage.googleapis.com/articles/support15.5.png"); }
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.3.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.0.png");}
+			&.blue::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.6.png");}
+		}
+		//outline
+		&.opened {
+			&::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.6.png");}
+			&.purple::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support14.9.png");}
+			&.blue::before {background-image: url("https://support-tools.storage.googleapis.com/articles/support15.5.png");}
 		}
 	}
+	
+	.banner.screenshot::after {
+		content: "You took a screenshot!";
+	}
+	.banner.replay::after {
+		content: "You replayed a snap!";
+	}
+	
+	//pending snaps (aka the gray ones)
+	.icon.gray::after,
+	.icon.grey::after {
+			content: "Pending";
+	}
+	.out .icon.gray::before,
+	.out .icon.grey::before {
+		background-image: url("https://support-tools.storage.googleapis.com/PendingSnap_icon-64904433.jpg") !important;
+	}
+	.in .icon.gray::before,
+	.in .icon.grey::before {
+		background-image: url("https://support-tools.storage.googleapis.com/Greychat_icon-712339909.png") !important;
+	}
 
-//*************************************************
-//	contact header
-//*************************************************
+	//*************************************************
+	//	contact header
+	//*************************************************
 	.contact {
 		position: relative;
 		background: linear-gradient(to right, #2ec9ff, #00a0f0), #3cb2e2;
@@ -187,7 +221,7 @@ $border: #d9d9d9;
 		font-size: 1.2em;
 		line-height: 2.5em;
 		font-weight: normal;
-		
+
 		//text overflow
 		text-align: center;
 		padding: 0 2.5em;
@@ -203,13 +237,13 @@ $border: #d9d9d9;
 
 		//menu (aka 3 lines)
 		&::before {
-			content: "\f0c9";//https://fontawesome.com/icons/bars?style=solid
+			content: "\f0c9"; //https://fontawesome.com/icons/bars?style=solid
 			left: 0.75em;
 		}
 
 		//arrow
 		&::after {
-			content: "\f054";//https://fontawesome.com/icons/chevron-right?style=solid
+			content: "\f054"; //https://fontawesome.com/icons/chevron-right?style=solid
 			right: 0.75em;
 		}
 	}
