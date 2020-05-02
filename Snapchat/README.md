@@ -16,7 +16,6 @@ Uses icons from [Font Awesome](https://fontawesome.com/).
 		<dd class="icon unopened blue"></dd>
 		<dd class="icon gray"></dd>
 	</div>
-	
 	<h4 class="banner screenshot"></h4>
 	<h4 class="banner replay"></h4>
 </dl>
