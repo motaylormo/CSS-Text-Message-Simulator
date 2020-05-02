@@ -19,7 +19,7 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 	display: grid;
 	margin: auto;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/background.png");
+	background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/images/background.png");
 	background-attachment: fixed;
 	background-size: 320px auto;
 
@@ -118,14 +118,14 @@ $shadow: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 			background-position: right;
 			background-size: auto 1.2ch;
 			padding-right: 2ch;
-			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/Checkmark2.png");
+			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/images/Checkmark2.png");
 		}
 		&.unread::after,
 		&.notreceived::after {
 			filter: grayscale(100%);
 		}
 		&.notreceived::after {
-			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/Checkmark.png");
+			background-image: url("https://raw.githubusercontent.com/motaylormo/CSS-Text-Message-Simulator/master/WhatsApp/images/Checkmark1.png");
 		}
 	}
 
