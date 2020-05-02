@@ -218,12 +218,12 @@ $bubble-padding: 0.5rem 0.75rem;
 					width: 210px; //default video aspect ratio 16:9
 					height: 118px;
 					max-width: 100%;
-				}
 
-				// aspect ratio 4:3
-				iframe[class="SD" i] {
-					width: 210px;
-					height: 157px;
+					// aspect ratio 4:3
+					&.SD {
+						width: 210px;
+						height: 157px;
+					}
 				}
 
 				iframe + figcaption {
