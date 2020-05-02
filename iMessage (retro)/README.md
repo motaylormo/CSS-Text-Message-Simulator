@@ -1,1 +1,1 @@
-Uses [Font Awesome](https://fontawesome.com/).
+Uses icons from [Font Awesome](https://fontawesome.com/).
