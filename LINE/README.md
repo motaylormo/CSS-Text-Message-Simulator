@@ -1,0 +1,1 @@
+Uses icons from [Material Icons](https://material.io/resources/icons/?style=baseline), [css codes here](https://github.com/Angelmmiguel/material_icons/blob/master/app/assets/stylesheets/material_icons_unicode.css.erb)
