@@ -1,0 +1,25 @@
+
+.whatsapp dd.cuppy {
+	width: 3em;
+	height: 3em;
+	background: none;
+	border: none;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+
+	//no tail
+	&:before {
+		display: none;
+	}
+
+	&.smile {	background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/01_Cuppy_smile.png");}
+	&.lol {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/02_Cuppy_lol.png");}
+	&.rofl {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/03_Cuppy_rofl.png");}
+	&.sad {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/04_Cuppy_sad.png");}
+	&.cry {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/05_Cuppy_cry.png");}
+	&.love {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/06_Cuppy_love.png");}
+	&.hate {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/07_Cuppy_hate.png");}
+	&.lovewithmug {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/08_Cuppy_lovewithmug.png");}
+	&.lovewithcookie {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/09_Cuppy_lovewithcookie.png");}
+	&.hmm {background-image: url("https://raw.githubusercontent.com/WhatsApp/stickers/master/iOS/WAStickersThirdParty/10_Cuppy_hmm.png");}
+}
