@@ -2,11 +2,11 @@
 Simulate text message conversations in: iMessage (iOS 1 - 6),  iMessage (iOS 7 and up), WhatsApp, Snapchat, and LINE.
 
 # CodePen
-* [https://codepen.io/motaylormo/pen/ZEGOqQr iMessage (7+)]
-* [https://codepen.io/motaylormo/pen/KKpaydv iMessage (1 - 6)]
-* [https://codepen.io/motaylormo/pen/PoqzxNO WhatsApp]
-* [https://codepen.io/motaylormo/pen/OJVRWzv Snapchat]
-* [https://codepen.io/motaylormo/pen/eYNBPvE LINE]
+* [iMessage (7+)](https://codepen.io/motaylormo/pen/ZEGOqQr)
+* [iMessage (1 - 6)](https://codepen.io/motaylormo/pen/KKpaydv)
+* [WhatsApp](https://codepen.io/motaylormo/pen/PoqzxNO)
+* [Snapchat](https://codepen.io/motaylormo/pen/OJVRWzv)
+* [LINE](https://codepen.io/motaylormo/pen/eYNBPvE)
 
 # Structure
 Everything is based off the `<dl>` list, with `<dt>` being used for the names of the people sending the texts, and `<dd>` being for the texts themselves.
